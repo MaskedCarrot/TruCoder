@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.SettingsFragment"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        app:title="@string/preferences"
+        android:id="@+id/fragcontes_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_photo"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_launcher_background"/>
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/codechef"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:text="Codechef handle"
+                    android:textColor="#545454"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/settings_codechef"
+                    android:visibility="gone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingBottom="10dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/codechef_getHandle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:hint="@string/handle" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/codeforces"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:text="Codeforces handle"
+                    android:textColor="#545454"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/settings_codeforces"
+                    android:visibility="gone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingBottom="10dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/codeforces_getHandle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:hint="@string/handle" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/review"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:text="Review TruCoder on playsotre"
+                android:textColor="#545454"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/bug"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:text="Report a bug"
+                android:textColor="#545454"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/feature"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:text="Suggest a feature"
+                android:textColor="#545454"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/github"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:text="View on Github"
+                android:textColor="#545454"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/signout"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:text="Signout"
+                android:textColor="#545454"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="0.2dp"
+                android:background="@android:color/darker_gray" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

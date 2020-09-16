@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#1a73e8</item>
+        <item name="colorPrimaryDark">#0049b5</item>
+        <item name="colorAccent">#0049b5</item>
+        <item name="android:statusBarColor">@color/whiteDark</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">#fafafa</item>
+        <item name="colorPrimaryDark">#c7c7c7</item>
+        <item name="android:statusBarColor">@color/whiteDark</item>
+        <item name="colorAccent">#2196f3</item>
+    </style>
+
+    <style name="AppTheme.Color" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">#fafafa</item>
+        <item name="colorPrimaryDark">#c7c7c7</item>
+        <item name="colorAccent">#2196f3</item>
+    </style>
+
+</resources>

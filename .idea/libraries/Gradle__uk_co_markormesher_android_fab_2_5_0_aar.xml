@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: uk.co.markormesher:android-fab:2.5.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/68c8b670d51502c2a3252b3016b0bd79/jetified-android-fab-2.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/68c8b670d51502c2a3252b3016b0bd79/jetified-android-fab-2.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/68c8b670d51502c2a3252b3016b0bd79/jetified-android-fab-2.5.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/uk.co.markormesher/android-fab/2.5.0/64abeded98ce0b0a1f4a5248f4c54a9fda5019c8/android-fab-2.5.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/uk.co.markormesher/android-fab/2.5.0/3e9b87f69d4ebbdce1c2240417878dbb50b8fb25/android-fab-2.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,10 @@
+<androidx.fragment.app.FragmentContainerView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_welcome_fragment"
+    android:name="androidx.navigation.fragment.NavHostFragment"
+    app:defaultNavHost="true"
+    app:navGraph="@navigation/welcome_navigatiioin">
+
+</androidx.fragment.app.FragmentContainerView>

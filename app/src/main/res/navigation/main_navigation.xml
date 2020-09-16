@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/nav_contests">
+
+    <fragment
+        android:id="@+id/nav_contests"
+        android:name="com.carrot.trucoder2.fragment.contests.ContestsFragment"
+        android:label="@string/contests"
+        tools:layout="@layout/fragment_contests" />
+    <fragment
+        android:id="@+id/nav_codechef"
+        android:name="com.carrot.trucoder2.fragment.CodechefFragment"
+        android:label="Codechef"
+        tools:layout="@layout/fragment_codechef" >
+        <action
+            android:id="@+id/action_nav_codechef_to_FriendsFragment"
+            app:destination="@id/FriendsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_codechef_to_RecentParticipationFragment"
+            app:destination="@id/RecentParticipationFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_codeforces"
+        android:name="com.carrot.trucoder2.fragment.CodeforcesFragment"
+        android:label="Codeforces"
+        tools:layout="@layout/fragment_codeforces" >
+        <action
+            android:id="@+id/action_nav_codeforces_to_RecentParticipationFragment"
+            app:destination="@id/RecentParticipationFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_codeforces_to_FriendsFragment"
+            app:destination="@id/FriendsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.carrot.trucoder2.fragment.SettingsFragment"
+        android:label="Codeforces"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/FriendsFragment"
+        android:name="com.carrot.trucoder2.fragment.ui.FriendsFragment"
+        android:label="CCFriendsFragment" />
+    <fragment
+        android:id="@+id/RecentParticipationFragment"
+        android:name="com.carrot.trucoder2.fragment.ui.RecentParticipationFragment"
+        android:label="CFRecentParticipationFragment" />
+</navigation>
