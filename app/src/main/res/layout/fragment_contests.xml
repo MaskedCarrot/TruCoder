@@ -18,9 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
         <com.google.android.material.tabs.TabLayout
+            app:tabIndicatorFullWidth="true"
             android:id="@+id/fragcontests_tablayout"
             style="@style/AppTheme.AppBarOverlay"
             android:layout_width="match_parent"
+            app:tabInlineLabel="true"
+            app:tabMode="scrollable"
+            app:tabUnboundedRipple="true"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <androidx.viewpager2.widget.ViewPager2

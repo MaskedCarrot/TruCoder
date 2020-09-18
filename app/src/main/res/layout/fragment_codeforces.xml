@@ -3,7 +3,24 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:layout_width="match_parent"
+    android:layout_marginBottom="?attr/actionBarSize"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/setCodeforcesUserName"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_codeforces_handle"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
     <TextView
@@ -23,13 +40,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:drawableTopCompat="@drawable/ic_nointernet" />
 
-    <com.airbnb.lottie.LottieAnimationView
+    <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/anim_2"
-        android:layout_width="150dp"
-        app:lottie_loop="true"
-        android:layout_height="150dp"
-        app:lottie_fileName="anim_main.json"
-        app:lottie_autoPlay="true"
+        style="@style/SpinKitView.Large.RotatingCircle"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:SpinKit_Color="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +83,8 @@
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax" />
+                    app:layout_collapseMode="parallax"
+                    android:contentDescription="@string/codechef" />
 
 
                 <androidx.appcompat.widget.Toolbar
@@ -103,18 +121,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:textAllCaps="false"
                         android:layout_margin="15dp"
                         android:layout_weight="50"
-                        android:text="Leaderboard" />
+                        android:text="@string/leaderboard" />
 
                     <Button
                         android:id="@+id/fragcodeforcescontent_recentparticipation"
                         android:layout_width="match_parent"
+                        android:textAllCaps="false"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="15dp"
                         android:layout_weight="50"
-                        android:text="Recent Participations" />
+                        android:text="@string/recent_participations" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -126,11 +146,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignRight="@id/fragcodeforcescontent_lastseen"
+                        android:layout_alignEnd="@id/fragcodeforcescontent_lastseen"
                         android:layout_alignParentStart="true"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:text="Last online" />
+                        android:text="@string/last_online" />
 
                     <TextView
                         android:id="@+id/fragcodeforcescontent_lastseen"
@@ -139,7 +159,6 @@
                         android:layout_alignParentEnd="true"
                         android:layout_gravity="center"
                         android:gravity="end"
-                        android:text="--"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -171,14 +190,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="--"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rating" />
+                            android:text="@string/rating" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -195,14 +213,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="--"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rank" />
+                            android:text="@string/rank" />
                     </LinearLayout>
 
                     <ImageView
@@ -211,7 +228,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="10"
                         android:src="@drawable/ic_expand"
-                        app:tint="@color/newbie" />
+                        app:tint="@color/newbie"
+                        android:contentDescription="@string/codechef" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -237,14 +255,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="--"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Highest Rating" />
+                            android:text="@string/highest_rating" />
 
                     </LinearLayout>
 
@@ -262,14 +279,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="--"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Highest Rank" />
+                            android:text="@string/highest_rank" />
                     </LinearLayout>
 
 
@@ -299,7 +315,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:text="Performance" />
+                            android:text="@string/performance" />
 
                         <com.github.mikephil.charting.charts.LineChart
                             android:id="@+id/fragcodeforcescontent_chart"

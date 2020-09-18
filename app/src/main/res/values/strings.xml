@@ -10,5 +10,16 @@
     <string name="preferences">Preferences</string>
     <string name="handle">Handle</string>
     <string name="app_icon"><![CDATA[</>]]></string>
-    <string name="error">There was an error. Either TruCoder doesn\'t know your correct handle or a network error has occurred Tap to retry</string>
+    <string name="error">There was a network error has occurred Tap to retry</string>
+    <string name="recent_participations">Recent Participations</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="set_codeforces_handle">Set Codeforces handle</string>
+    <string name="last_online">Last online</string>
+    <string name="rating">Rating</string>
+    <string name="rank">Rank</string>
+    <string name="highest_rating">Highest Rating</string>
+    <string name="highest_rank">Highest Rank</string>
+    <string name="performance">Performance</string>
+    <string name="skip">Skip</string>
+    <string name="tell_us_your_codechef_handle">Tell us your Codechef handle</string>
 </resources>

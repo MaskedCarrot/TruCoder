@@ -2,15 +2,30 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
+    android:layout_marginBottom="?attr/actionBarSize"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.airbnb.lottie.LottieAnimationView
+    <Button
+        android:visibility="gone"
+        android:id="@+id/setCodechefUserName"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Codechef handle"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
     android:id="@+id/anim_1"
-    android:layout_width="150dp"
-    app:lottie_loop="true"
-    android:layout_height="150dp"
-    app:lottie_fileName="anim_main.json"
-    app:lottie_autoPlay="true"
+    android:layout_width="wrap_content"
+    android:padding="5dp"
+    android:layout_height="wrap_content"
+    style="@style/SpinKitView.Large.RotatingCircle"
+    app:SpinKit_Color="@color/colorPrimary"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +103,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
                 android:animateLayoutChanges="true"
                 android:orientation="vertical">
 
@@ -104,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="15dp"
+                        android:textAllCaps="false"
                         android:layout_weight="50"
                         android:text="Leaderboard" />
 
@@ -112,6 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:textAllCaps="false"
                         android:layout_margin="15dp"
                         android:layout_weight="50"
                         android:text="Recent Participations" />
@@ -601,6 +620,37 @@
 
                         <com.github.mikephil.charting.charts.LineChart
                             android:id="@+id/fragcodechefcontent_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_marginBottom="10dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="7dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Submissions" />
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/fragcodechefcontent_chart2"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
                             android:layout_marginBottom="10dp" />

@@ -17,11 +17,6 @@
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/timeZomeFragment"
-        android:name="com.carrot.trucoder2.fragment.welcome.TimeZomeFragment"
-        android:label="fragment_time_zome"
-        tools:layout="@layout/fragment_time_zome" />
-    <fragment
         android:id="@+id/codechefHandleFragment"
         android:name="com.carrot.trucoder2.fragment.welcome.CodechefHandleFragment"
         android:label="fragment_codechef_handle"
@@ -36,11 +31,5 @@
         android:id="@+id/codeforcesHandleFragment"
         android:name="com.carrot.trucoder2.fragment.welcome.CodeforcesHandleFragment"
         android:label="fragment_codeforces_handle"
-        tools:layout="@layout/fragment_codeforces_handle" >
-        <action
-            android:id="@+id/action_codeforcesHandleFragment_to_timeZomeFragment"
-            app:destination="@id/timeZomeFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
-    </fragment>
+        tools:layout="@layout/fragment_codeforces_handle" />
 </navigation>

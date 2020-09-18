@@ -31,17 +31,19 @@ class MainActivity : AppCompatActivity(){
         setContentView(view)
 
         val sharedPref = this.getSharedPreferences("secret" , Context.MODE_PRIVATE)
-        val cfhandle = sharedPref.getString("CFH", "")!!
-        val cchandle = sharedPref.getString("CCH" ,"")!!
+        val cfhandle = sharedPref.getString("CFH", "=_=")!!
+        val cchandle = sharedPref.getString("CCH" ,"=_=")!!
         val codeRepository = CodeRespository(CodeDatabase(this))
 
 
         val viewModelProviderFactory = MainActivityViewModelProviderFactory(codeRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(MainActivityViewModel::class.java)
 
-        viewModel.getCodeforcesUser(cfhandle)
         viewModel.getContestData()
-        viewModel.getCodeChefUser(cchandle)
+        if(!cfhandle.equals("=_="))
+            viewModel.getCodeforcesUser(cfhandle)
+        if(!cchandle.equals("=_="))
+            viewModel.getCodeChefUser(cchandle)
 
 
 

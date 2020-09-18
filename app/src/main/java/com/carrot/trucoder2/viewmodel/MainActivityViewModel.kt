@@ -18,8 +18,7 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     val contestLD : MutableLiveData<Resource<List<ResultContest>>> = MutableLiveData();
     val codechefFriendsLD : MutableLiveData<Resource<ResponseLeaderboard>> = MutableLiveData();
     val codeforcesFriendsLD : MutableLiveData<Resource<ResponseLeaderboard>> = MutableLiveData();
-    val result1: MutableLiveData<Int> = MutableLiveData();
-    val result2: MutableLiveData<Int> = MutableLiveData();
+
 
     fun RefreshCCFriends(handles: String) = viewModelScope.launch {
         val list = respository.RefreshCC()
@@ -149,6 +148,9 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     fun getCodechefContests() =
         respository.getCodechefContests()
 
+    fun getAtCoderContests() =
+        respository.getAtCoderContests()
+
     fun getCodeforcesContest() =
         respository.getCodeforcesContests()
 
@@ -169,6 +171,9 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
 
     fun getAllRunningCCContests()=
         respository.getAllRunningCCContest()
+
+    fun getAllRunningACContests()=
+        respository.getAllRunningACContest()
 
     fun getAllRunningCFContests()=
         respository.getAllRunningCFContest()
@@ -192,41 +197,12 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     }
 
 
-    fun CheckCodeforcesUser(handle: String) = viewModelScope.launch {
-        val response = respository.fetchFriendListCF(handle)
-        if (response.isSuccessful) {
-            response.body()?.let {
-                if(it.status == "Success")
-                    result1.postValue(1)
-                else
-                    result1.postValue(0)
-            }
-        } else {
-            result1.postValue(0)
-        }
-    }
 
-    fun CheckCodeChefUser(handle: String) = viewModelScope.launch {
-        val response = respository.fetchFriendListCC(handle)
-        if (response.isSuccessful) {
-            response.body()?.let {
-                if(it.status == "Success")
-                    result2.postValue(1)
-                else
-                    result2.postValue(0)
-            }
-        } else {
-            result2.postValue(0)
-        }
-    }
-
-    fun afterMathsCodechef(handle:String) = viewModelScope.launch {
+    fun afterMathsCodechef() = viewModelScope.launch {
         respository.deleteAllCC()
-        respository.fetchFriendListCC(handle)
     }
-    fun afterMathsCodeforces(handle :String) = viewModelScope.launch {
+    fun afterMathsCodeforces() = viewModelScope.launch {
         respository.deleteAllCF()
-        respository.fetchFriendListCF(handle)
     }
 
 

@@ -33,11 +33,14 @@ class FriendsFragment : Fragment(R.layout.fragment_friends){
 
         val sharedPref = activity?.getSharedPreferences("secret", Context.MODE_PRIVATE)
         if (sharedPref != null) {
-            cfhandle = sharedPref.getString("CFH", "")!!
-            cchandle = sharedPref.getString("CCH", "")!!
+            cfhandle = sharedPref.getString("CFH", "=_=")!!
+            cchandle = sharedPref.getString("CCH", "=_=")!!
         }
 
 
+        println(id)
+        println(cchandle)
+        println(cfhandle)
         when(id){
             1 -> refreshCF()
             2 -> refreshCC()
@@ -100,7 +103,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends){
 
 
     }
-
 
     private fun refreshCF(){
         viewModel.RefreshCFFriends(cfhandle)

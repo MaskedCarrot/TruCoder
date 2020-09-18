@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginBottom="70dp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SettingsFragment"
@@ -9,6 +10,8 @@
     <androidx.appcompat.widget.Toolbar
         app:title="@string/preferences"
         android:id="@+id/fragcontes_toolbar"
+        android:elevation="7dp"
+        style="@style/Widget.AppCompat.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
     <ScrollView
@@ -33,77 +36,60 @@
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"/>
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/codechef"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/codechef"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:text="Codechef handle"
                     android:textColor="#545454"/>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/settings_codechef"
+                <com.github.ybq.android.spinkit.SpinKitView
                     android:visibility="gone"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
+                    android:id="@+id/settingsspin1"
+                    android:layout_width="20dp"
+                    android:layout_alignParentEnd="true"
+                    app:SpinKit_Color="@color/colorPrimary"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:paddingBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/codechef_getHandle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:hint="@string/handle" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
+                    style="@style/SpinKitView.Circle"/>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:layout_height="0.2dp"
                 android:background="@android:color/darker_gray" />
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
                 <TextView
+                    android:layout_alignParentStart="true"
                     android:id="@+id/codeforces"
                     android:layout_marginVertical="20dp"
                     android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    style="@style/TextAppearance.AppCompat.Medium"
                     android:text="Codeforces handle"
                     android:textColor="#545454"/>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/settings_codeforces"
+                <com.github.ybq.android.spinkit.SpinKitView
                     android:visibility="gone"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
+                    android:id="@+id/settingsspin2"
+                    android:layout_width="wrap_content"
+                    app:SpinKit_Color="@color/colorPrimary"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:paddingBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/codeforces_getHandle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:hint="@string/handle" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
+                    style="@style/SpinKitView.Small.Circle"/>
+            </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
@@ -115,9 +101,7 @@
                 android:layout_marginVertical="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:text="Review TruCoder on playsotre"
+                android:text="Review TruCoder on playstore"
                 android:textColor="#545454"/>
             <View
                 android:layout_width="match_parent"
@@ -131,8 +115,6 @@
                 android:layout_marginVertical="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:text="Report a bug"
                 android:textColor="#545454"/>
             <View
@@ -146,8 +128,6 @@
                 android:layout_marginVertical="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:text="Suggest a feature"
                 android:textColor="#545454"/>
 
@@ -162,8 +142,6 @@
                 android:layout_marginVertical="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:text="View on Github"
                 android:textColor="#545454"/>
 
@@ -179,8 +157,6 @@
                 android:layout_marginVertical="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:text="Signout"
                 android:textColor="#545454"/>
             <View

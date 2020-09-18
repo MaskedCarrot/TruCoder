@@ -38,6 +38,9 @@ class CodeRespository(val db :CodeDatabase ) {
     fun getCodechefContests() =
         db.getResultContestDao().getCodechefContests()
 
+    fun getAtCoderContests() =
+        db.getResultContestDao().getAtCoderContests()
+
     fun getCodeforcesContests() =
         db.getResultContestDao().getCodeforcesContests()
 
@@ -66,6 +69,8 @@ class CodeRespository(val db :CodeDatabase ) {
         db.getResultContestDao().getResultRunningContest()
     fun getAllRunningCCContest()=
         db.getResultContestDao().getResultRunningCCContest()
+    fun getAllRunningACContest()=
+        db.getResultContestDao().getResultRunningACContest()
     fun getAllRunningCFContest()=
         db.getResultContestDao().getResultRunningCFContest()
     fun getAllRunningGContest()=

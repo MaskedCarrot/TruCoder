@@ -1,6 +1,7 @@
 package com.carrot.trucoder2.fragment.welcome
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -9,9 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.carrot.trucoder2.R
+import com.carrot.trucoder2.activity.MainActivity
 import com.carrot.trucoder2.utils.Constants.CODEFORCES_PROFILE_URL
+import com.carrot.trucoder2.utils.Functions.Companion.hideSoftKeyboard
 import com.carrot.trucoder2.viewmodel.DetailsViewModel
-import kotlinx.android.synthetic.main.fragment_codechef_handle.*
+import com.github.ybq.android.spinkit.style.Circle
+import com.github.ybq.android.spinkit.style.FoldingCube
 import kotlinx.android.synthetic.main.fragment_codeforces_handle.*
 import java.net.URL
 
@@ -22,18 +26,21 @@ class CodeforcesHandleFragment : Fragment(R.layout.fragment_codeforces_handle) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var handle = "=_="
+        var handle = ""
+        CodeforcesHandlespin_kit.setIndeterminateDrawable(Circle())
 
 
         w_codeforces_getHandle.setOnEditorActionListener { _, i, _ ->
+            hideSoftKeyboard(requireActivity())
+            CodeforcesHandlespin_kit.visibility = View.VISIBLE
             if(i == EditorInfo.IME_ACTION_NEXT){
-                handle = w_codechef_getHandle.text.toString()
+                handle = w_codeforces_getHandle.text.toString()
                 if(handle.isNotEmpty()) {
                     val url = URL(CODEFORCES_PROFILE_URL + handle)
                     viewModel.checkHandle(url)
                 }
                 else {
-                    handle = "=_="
+                    handle = ""
                     Toast.makeText(requireContext() , "Please enter your handle first" , Toast.LENGTH_SHORT).show()
                 }
                 true
@@ -45,14 +52,19 @@ class CodeforcesHandleFragment : Fragment(R.layout.fragment_codeforces_handle) {
                 1 -> {
                     val sharedPreferences = requireContext().getSharedPreferences("secret" , Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
-                    editor.putString("CCH", handle)
+                    editor.putString("CFH", handle)
                     editor.apply()
-                    findNavController().navigate(R.id.action_codechefHandleFragment_to_codeforcesHandleFragment)
+                    CodeforcesHandlespin_kit.visibility = View.GONE
+                    startActivity(Intent(context, MainActivity::class.java))
+                    requireActivity().finish()
                 }
                 0 -> {
+                    w_codeforces_getHandle.setText("")
+                    CodeforcesHandlespin_kit.visibility = View.GONE
                     Toast.makeText( requireContext(), "$handle does not exists", Toast.LENGTH_LONG).show()
                 }
                 -1->{
+                    CodeforcesHandlespin_kit.visibility = View.GONE
                     Toast.makeText(requireContext() ,"There was an error while searching for $handle"  , Toast.LENGTH_LONG).show()
                 }
             }
@@ -62,9 +74,10 @@ class CodeforcesHandleFragment : Fragment(R.layout.fragment_codeforces_handle) {
         w_codeforces_skip.setOnClickListener {
             val sharedPreferences = requireContext().getSharedPreferences("secret" , Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-            editor.putString("CFH" , handle)
+            editor.putString("CFH" , "=_=")
             editor.apply()
-            findNavController().navigate(R.id.action_codeforcesHandleFragment_to_timeZomeFragment)
+            startActivity(Intent(context, MainActivity::class.java))
+            requireActivity().finish()
         }
     }
 }

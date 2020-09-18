@@ -93,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
             val sharedPref = this.getSharedPreferences("secret", Context.MODE_PRIVATE)
             val cfhandle = sharedPref.getString("CFH", "")!!
             val cchandle = sharedPref.getString("CCH", "")!!
+            println("cfhandle =$cfhandle $cchandle")
             if (cfhandle == "" || cchandle == "") {
                 startActivity(Intent(this, DetailsActivity::class.java))
                 finish()

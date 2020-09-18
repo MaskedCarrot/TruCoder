@@ -32,8 +32,9 @@ class ContestsFragment : Fragment(R.layout.fragment_contests) {
                 0->tab.text = "All"
                 1->tab.text = "Codechef"
                 2->tab.text = "Codeforces"
-                3->tab.text = "Google"
-                4->tab.text = "TopCoder"
+                3->tab.text = "AtCoder"
+                4->tab.text = "Google"
+                5->tab.text = "TopCoder"
             }
         }.attach()
 

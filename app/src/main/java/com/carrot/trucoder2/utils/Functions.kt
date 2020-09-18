@@ -27,44 +27,52 @@ class Functions {
         }
 
         fun getCodeforcesStars(stars: Int):Int{
-            when(stars-48){
-                1 -> return R.drawable.astar
-                2 -> return R.drawable.bstar
-                3 -> return R.drawable.cstar
-                4 -> return R.drawable.dstar
-                5 -> return R.drawable.estar
-                6 -> return R.drawable.fstar
-                7 -> return R.drawable.gstar
-                else->return -1
+            return when(stars-48){
+                1 -> R.drawable.astar
+                2 -> R.drawable.bstar
+                3 -> R.drawable.cstar
+                4 -> R.drawable.dstar
+                5 -> R.drawable.estar
+                6 -> R.drawable.fstar
+                7 -> R.drawable.gstar
+                else-> -1
             }
         }
 
         fun getCodeforcesColor(rating: Int):Int{
-            var c = 0
-            if (rating < 1200) {
-                c = R.color.newbie
-            }else if (rating < 1400) {
-                c =  R.color.pupil
-            } else if (rating < 1600) {
-                c = R.color.specilist
-            } else if (rating < 1900){
-                c =  R.color.expert
-            }else if (rating < 2200) {
-                c=  R.color.CandidateMaster
-            }else if (rating < 2400) {
+            var c: Int
+            when {
+                rating < 1200 -> {
+                    c = R.color.newbie
+                }
+                rating < 1400 -> {
+                    c =  R.color.pupil
+                }
+                rating < 1600 -> {
+                    c = R.color.specilist
+                }
+                rating < 1900 -> {
+                    c =  R.color.expert
+                }
+                rating < 2200 -> {
+                    c=  R.color.CandidateMaster
+                }
+                rating < 2400 -> {
                     c = R.color.InternationalMaster
-            }else if (rating < 2900) {
-                c =  R.color.InternationalGrandmaster
-            }else{
-                c =R.color.LegendaryGrandmaster
+                }
+                rating < 2900 -> {
+                    c =  R.color.InternationalGrandmaster
+                }
+                else -> {
+                    c =R.color.LegendaryGrandmaster
 
+                }
             }
             return c
         }
 
         fun ConvertDateFromMill(mill :Long):String{
-            val date = DateFormat.format("dd-MMM-yyyy", mill*1000).toString()
-            return date
+            return DateFormat.format("dd-MMM-yyyy", mill*1000).toString()
         }
 
         fun ConvertTimeFomMill(mill:Long):String{
@@ -73,8 +81,7 @@ class Functions {
         }
 
         fun ConvertDateTimeFomMill(mill:Long):String{
-            val time = DateFormat.format("dd-MMM-yyyy hh:mm a", mill*10).toString()
-            return time
+            return DateFormat.format("dd-MMM-yyyy hh:mm a", mill*10).toString()
         }
 
 

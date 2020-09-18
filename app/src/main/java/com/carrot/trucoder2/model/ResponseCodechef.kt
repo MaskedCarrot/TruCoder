@@ -13,5 +13,7 @@ data class ResponseCodechef(
     val highest_rating: Int,
     val rating: Int,
     val stars: String,
-    val status : String
+    val status : String ,
+    val fully_solved :Int,
+    val partially_solved :Int
 )

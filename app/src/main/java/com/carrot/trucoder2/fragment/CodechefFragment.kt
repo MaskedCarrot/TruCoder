@@ -5,27 +5,36 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.carrot.trucoder2.R
 import com.carrot.trucoder2.activity.MainActivity
 import com.carrot.trucoder2.model.RecentParticipation
 import com.carrot.trucoder2.model.ResponseCodechef
+import com.carrot.trucoder2.utils.Constants.CODECHEF_PROFILE_URL
 import com.carrot.trucoder2.utils.Functions
+import com.carrot.trucoder2.utils.NameDialog
 import com.carrot.trucoder2.utils.Resource
+import com.carrot.trucoder2.viewmodel.DetailsViewModel
 import com.carrot.trucoder2.viewmodel.MainActivityViewModel
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.*
+import com.github.ybq.android.spinkit.style.DoubleBounce
+import com.github.ybq.android.spinkit.style.FoldingCube
+import com.github.ybq.android.spinkit.style.RotatingCircle
 import kotlinx.android.synthetic.main.fragment_codechef.*
+import java.net.URL
 
 
-class CodechefFragment : Fragment(R.layout.fragment_codechef) {
+class CodechefFragment : Fragment(R.layout.fragment_codechef) ,  NameDialog.NameDialogListener {
 
     private lateinit var viewModel : MainActivityViewModel
+    private val viewmodel2 :DetailsViewModel by viewModels()
     private var flag  = 1
     private var list :List<RecentParticipation> = ArrayList()
     var handle = "=_="
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,26 +43,41 @@ class CodechefFragment : Fragment(R.layout.fragment_codechef) {
 
 
         val sharedPref = (activity as MainActivity).getSharedPreferences("secret" , Context.MODE_PRIVATE)
-        val cchandle = sharedPref.getString("CCH" ,"=_=")!!
+        handle = sharedPref.getString("CCH" ,"=_=")!!
+        anim_1.setIndeterminateDrawable(DoubleBounce())
+
+        if(handle == "=_="){
+            anim_1.visibility = View.GONE
+            setCodechefUserName.visibility = View.VISIBLE
+        }
+
+        setCodechefUserName.setOnClickListener { noNameProtocol() }
 
 
         viewModel.codechefUserLD.observe(viewLifecycleOwner , {
             when(it){
                 is Resource.Success ->{
                     it.data?.let { it1 -> setTextView(it1)
-                        flag = 2
-                        codechef_errorState.visibility =View.GONE
-                        mainview.visibility = View.VISIBLE
-                        anim_1.visibility = View.GONE
-                        list = it.data.resultCodechefContest_ratings
-                        viewModel.RefreshCCFriends(cchandle)
+                        try{
+                            flag = 2
+                            setCodechefUserName.visibility =View.GONE
+                            codechef_errorState.visibility =View.GONE
+                            mainview.visibility = View.VISIBLE
+                            anim_1.visibility = View.GONE
+                            list = it.data.resultCodechefContest_ratings
+                            setPieChart(it.data.fully_solved , it.data.partially_solved)
+                        }catch(e:Exception){
+                            Toast.makeText(context , "There is not enough data on $handle" , Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
                 is Resource.Error->{
+                    setCodechefUserName.visibility =View.GONE
                     anim_1.visibility = View.GONE
                     codechef_errorState.visibility = View.VISIBLE
                 }
                 is Resource.Loading->{
+                    setCodechefUserName.visibility =View.GONE
                     mainview.visibility = View.GONE
                     anim_1.visibility = View.VISIBLE
                     codechef_errorState.visibility = View.GONE
@@ -67,13 +91,13 @@ class CodechefFragment : Fragment(R.layout.fragment_codechef) {
             mainview.visibility = View.GONE
             anim_1.visibility = View.VISIBLE
             codechef_errorState.visibility = View.GONE
-            viewModel.getCodeChefUser(cchandle)
+            viewModel.getCodeChefUser(handle)
         }
+
         fragcodechefcontent_leaderboadbtn.setOnClickListener{
             viewModel.getAllCCFriends().observe(viewLifecycleOwner , {
                 val bundle = Bundle()
                 bundle.putInt("ID" , 2)
-                bundle.putParcelableArrayList("list1" , it as ArrayList<out Parcelable>?)
                 findNavController().navigate(R.id.action_nav_codechef_to_FriendsFragment , bundle)
             })
         }
@@ -141,6 +165,27 @@ class CodechefFragment : Fragment(R.layout.fragment_codechef) {
             }
         }
 
+        viewmodel2.result.observe(viewLifecycleOwner , {
+            when (it) {
+                1 -> {
+                    setCodechefUserName.visibility =View.GONE
+                    viewModel.getCodeChefUser(handle)
+                    val sharedPreferences = requireContext().getSharedPreferences("secret" , Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("CCH", handle)
+                    editor.apply()
+                }
+                0 -> {
+                    Toast.makeText( requireContext(), "$handle does not exists", Toast.LENGTH_LONG).show()
+                    handle = "=_="
+                }
+                -1->{
+                    Toast.makeText(requireContext() ,"There was an error while searching for $handle"  , Toast.LENGTH_LONG).show()
+                    handle = "=_="
+                }
+            }
+        })
+
 
 
 
@@ -182,6 +227,29 @@ class CodechefFragment : Fragment(R.layout.fragment_codechef) {
         fragcodechefcontent_chart.setPinchZoom(false)
         fragcodechefcontent_chart.xAxis.setDrawGridLines(false)
         fragcodechefcontent_chart.setDrawBorders(false)
+        fragcodechefcontent_chart.alpha = 1.0F
+    }
+
+    private fun setPieChart(fully:Int , partial :Int){
+        val pielist = mutableListOf<PieEntry>()
+        pielist.add(PieEntry(fully.toFloat() , "Fully solved "))
+        pielist.add(PieEntry(partial.toFloat() , "Partial solved"))
+        val colors = mutableListOf(Color.parseColor("#178035") , Color.parseColor("#ED901C"))
+        val pieDataSet = PieDataSet(pielist,"")
+        pieDataSet.colors = colors
+        val pieData = PieData(pieDataSet)
+        fragcodechefcontent_chart2.data = pieData
+    }
+
+    private fun noNameProtocol(){
+        val dialog = NameDialog()
+        dialog.show(childFragmentManager , "Codechef_NO_NAME")
+    }
+
+    override fun applyUsername(handle: String) {
+        val url = URL(CODECHEF_PROFILE_URL + handle)
+        viewmodel2.checkHandle(url)
+        this.handle = handle
     }
 
 }

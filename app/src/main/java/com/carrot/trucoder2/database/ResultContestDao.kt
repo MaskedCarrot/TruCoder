@@ -24,6 +24,9 @@ interface ResultContestDao {
     @Query("SELECT * FROM ResultContest WHERE currentStatus  = \"ongoing\" AND id = 2 ORDER BY timestamp ASC ")
     fun getResultRunningCCContest():LiveData<List<ResultContest>>
 
+    @Query("SELECT * FROM ResultContest WHERE currentStatus  = \"ongoing\" AND id = 93 ORDER BY timestamp ASC ")
+    fun getResultRunningACContest():LiveData<List<ResultContest>>
+
     @Query("SELECT * FROM ResultContest WHERE currentStatus = \"ongoing\" AND id = 1 ORDER BY timestamp ASC ")
     fun getResultRunningCFContest():LiveData<List<ResultContest>>
 
@@ -38,6 +41,9 @@ interface ResultContestDao {
 
     @Query("SELECT * FROM ResultContest WHERE id = 2 AND currentStatus = \"upcomming\" ORDER BY timestamp ASC")
     fun getCodechefContests(): LiveData<List<ResultContest>>
+
+    @Query("SELECT * FROM ResultContest WHERE id = 93 AND currentStatus = \"upcomming\" ORDER BY timestamp ASC")
+    fun getAtCoderContests(): LiveData<List<ResultContest>>
 
     @Query("SELECT * FROM ResultContest WHERE id = 35 AND currentStatus = \"upcomming\" ORDER BY timestamp ASC")
     fun getGoogleContests(): LiveData<List<ResultContest>>

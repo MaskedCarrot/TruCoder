@@ -33,7 +33,8 @@ class OngoingContestAdapter: RecyclerView.Adapter<OngoingContestAdapter.MyViewHo
             1 -> holder.logo.setImageResource(R.drawable.logo_codeforces)
             2 -> holder.logo.setImageResource(R.drawable.logo_codechef)
             12 -> holder.logo.setImageResource(R.drawable.logo_topcoder)
-            35 -> holder.logo.setImageResource(R.drawable.logo_google)
+            35 -> holder.logo.setImageResource(R.drawable.logo_google)  
+            93 ->holder.logo.setImageResource(R.drawable.logo_atcoder)
 
         }
         val time = System.currentTimeMillis()
