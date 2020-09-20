@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 
 
@@ -25,7 +26,7 @@ android {
         applicationId "com.carrot.trucoder2"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 6
+        versionCode 7
         versionName "2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -92,4 +93,7 @@ dependencies {
     implementation 'uk.co.markormesher:android-fab:2.5.0'
     //spin kit
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    //crashlytics
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
 }

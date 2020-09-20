@@ -10,7 +10,7 @@
     <string name="preferences">Preferences</string>
     <string name="handle">Handle</string>
     <string name="app_icon"><![CDATA[</>]]></string>
-    <string name="error">There was a network error has occurred Tap to retry</string>
+    <string name="error">There was either a network error or you have not participated in enough contests yet. Tap to retry</string>
     <string name="recent_participations">Recent Participations</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="set_codeforces_handle">Set Codeforces handle</string>
