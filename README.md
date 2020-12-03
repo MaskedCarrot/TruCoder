@@ -1,7 +1,6 @@
 # TruCoder
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6e5f66118c424dd18082df8cd518d01f)](https://app.codacy.com/gh/MaskedCarrot/TruCoder?utm_source=github.com&utm_medium=referral&utm_content=MaskedCarrot/TruCoder&utm_campaign=Badge_Grade)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Android CI](https://github.com/MaskedCarrot/TruCoder/workflows/Android%20CI/badge.svg)
 
 
 <a href="https://play.google.com/store/apps/details?id=com.carrot.trucoder2" target="_blank" align="left">
