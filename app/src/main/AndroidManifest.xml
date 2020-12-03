@@ -11,16 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:name=".di.BaseApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.DetailsActivity"></activity>
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

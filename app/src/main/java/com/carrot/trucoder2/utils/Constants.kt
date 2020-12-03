@@ -6,5 +6,9 @@ object Constants {
 
     val CODEFORCES_PROFILE_URL = "https://codeforces.com/profile/"
 
+    val DATABASE_NAME = "trucoder.db"
+
+    const val BASE_URL = "http://code-carrot.herokuapp.com"
+
 
 }

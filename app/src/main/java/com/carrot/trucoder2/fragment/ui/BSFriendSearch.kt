@@ -11,21 +11,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.coroutineScope
 import com.carrot.trucoder2.R
 import com.carrot.trucoder2.activity.MainActivity
-import com.carrot.trucoder2.database.CodeDatabase
-import com.carrot.trucoder2.repository.CodeRespository
+import com.carrot.trucoder2.repository.CodeRepository
 import com.carrot.trucoder2.utils.Functions.Companion.hideSoftKeyboard
 import com.carrot.trucoder2.utils.Functions.Companion.showSoftKeyboard
 import com.carrot.trucoder2.viewmodel.MainActivityViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class BSFriendSearch(val platform: Int) : BottomSheetDialogFragment(){
+class BSFriendSearch(val platform: Int) : BottomSheetDialogFragment() {
 
-    private lateinit var viewModel : MainActivityViewModel
-    private lateinit var codeRespository: CodeRespository
-    val result : MutableLiveData<Int> = MutableLiveData();
+    private lateinit var viewModel: MainActivityViewModel
+
+    @Inject
+    lateinit var codeRepository: CodeRepository
+    val result: MutableLiveData<Int> = MutableLiveData()
 
     @SuppressLint("RestrictedApi")
     override fun setupDialog(dialog: Dialog, style: Int) {
@@ -34,14 +36,14 @@ class BSFriendSearch(val platform: Int) : BottomSheetDialogFragment(){
         dialog.setContentView(contentView)
         showSoftKeyboard(contentView, activity as MainActivity)
         viewModel = (activity as MainActivity).viewModel
-        codeRespository = CodeRespository(CodeDatabase(requireContext()))
-        val handle = contentView.findViewById<TextInputEditText>(R.id.friend_bottomsheet_name_edit_text)
+        val handle =
+            contentView.findViewById<TextInputEditText>(R.id.friend_bottomsheet_name_edit_text)
         val search = contentView.findViewById<Button>(R.id.bs_friend_find)
         handle.isSelected = true
 
         handle.requestFocus()
         val imm =  requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
 
         search.setOnClickListener(View.OnClickListener {
@@ -68,7 +70,7 @@ class BSFriendSearch(val platform: Int) : BottomSheetDialogFragment(){
     private fun findUser(id: Int, handle: String) = lifecycle.coroutineScope.launch{
             when(id){
                 1 -> {
-                    val res = codeRespository.fetchFriendListCF(handle)
+                    val res = codeRepository.fetchFriendListCF(handle)
 
                     if (res.isSuccessful) {
                         res.body()?.result?.get(0)?.let { viewModel.InsertFriend(res.body()!!) }
@@ -78,7 +80,7 @@ class BSFriendSearch(val platform: Int) : BottomSheetDialogFragment(){
                     }
                 }
                 2 -> {
-                    val res = codeRespository.fetchFriendListCC(handle)
+                    val res = codeRepository.fetchFriendListCC(handle)
                     if (res.isSuccessful) {
                         res.body()?.result?.get(0)?.let { viewModel.InsertFriend(res.body()!!) }
                         result.postValue(1)

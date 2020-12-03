@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.carrot.trucoder2.R
-import com.carrot.trucoder2.activity.LoginActivity
+import com.carrot.trucoder2.activity.AuthActivity
 import com.carrot.trucoder2.activity.MainActivity
 import com.carrot.trucoder2.utils.Constants
 import com.carrot.trucoder2.utils.NameDialog
@@ -129,7 +129,7 @@ import java.net.URL
 
             signout.setOnClickListener{
                 auth.signOut()
-                startActivity(Intent(activity, LoginActivity::class.java))
+                startActivity(Intent(activity, AuthActivity::class.java))
             }
 
             viewModel2.result.observe(viewLifecycleOwner, {

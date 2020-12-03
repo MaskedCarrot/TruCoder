@@ -1,37 +1,37 @@
 package com.carrot.trucoder2.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carrot.trucoder2.model.*
-import com.carrot.trucoder2.repository.CodeRespository
+import com.carrot.trucoder2.repository.CodeRepository
 import com.carrot.trucoder2.utils.Resource
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
+class MainActivityViewModel @ViewModelInject constructor(private val repository: CodeRepository) :
+    ViewModel() {
 
     val codeforcesUserLD: MutableLiveData<Resource<ResponseCodforces>> = MutableLiveData()
-    val codechefUserLD : MutableLiveData<Resource<ResponseCodechef>> = MutableLiveData()
-    val contestLD : MutableLiveData<Resource<List<ResultContest>>> = MutableLiveData();
-    val codechefFriendsLD : MutableLiveData<Resource<ResponseLeaderboard>> = MutableLiveData();
-    val codeforcesFriendsLD : MutableLiveData<Resource<ResponseLeaderboard>> = MutableLiveData();
+    val codechefUserLD: MutableLiveData<Resource<ResponseCodechef>> = MutableLiveData()
+    val contestLD: MutableLiveData<Resource<List<ResultContest>>> = MutableLiveData()
+    val codechefFriendsLD: MutableLiveData<Resource<ResponseLeaderboard>> = MutableLiveData()
+    val codeforcesFriendsLD: MutableLiveData<Resource<ResponseLeaderboard>> = MutableLiveData()
 
 
     fun RefreshCCFriends(handles: String) = viewModelScope.launch {
-        val list = respository.RefreshCC()
+        val list = repository.RefreshCC()
         var str = ""
-        for(i in list)
+        for (i in list)
             str = "$str$i;"
-        if(list.isEmpty())
+        if (list.isEmpty())
             str = "$handles;"
-        str = str.substring(0 , str.length-1)
-        val response = respository.fetchFriendListCC(str)
+        str = str.substring(0, str.length - 1)
+        val response = repository.fetchFriendListCC(str)
         if(response.isSuccessful){
             response.body()?.let {
-                respository.InsertFriends(it)
+                repository.InsertFriends(it)
             }
         }
         else{
@@ -40,7 +40,7 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     }
 
     fun RefreshCFFriends(handles: String) = viewModelScope.launch {
-        val list = respository.RefreshCF()
+        val list = repository.RefreshCF()
         var str = ""
         for(i in list)
             str = "$str$i;"
@@ -48,10 +48,10 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
             str = "$handles;"
         str = str.substring(0 , str.length-1)
 
-        val response = respository.fetchFriendListCF(str)
+        val response = repository.fetchFriendListCF(str)
         if(response.isSuccessful){
             response.body()?.let {
-                respository.InsertFriends(it)
+                repository.InsertFriends(it)
             }
         }
         else{
@@ -62,7 +62,7 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     fun getCodeforcesUser(handle : String) = viewModelScope.launch {
         try{
             codeforcesUserLD.postValue(Resource.Loading())
-            val response = respository.fetchCodeforcesUser(handle)
+            val response = repository.fetchCodeforcesUser(handle)
             if(response.isSuccessful) {
                 response.body()?.let { result ->
                     if(result.status == "Success")
@@ -82,7 +82,7 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     fun getCodeChefUser(handle:String) = viewModelScope.launch {
         try{
             codechefUserLD.postValue(Resource.Loading())
-            val response = respository.fetchCodechefUser(handle)
+            val response = repository.fetchCodechefUser(handle)
             if(response.isSuccessful) {
                 response.body()?.let { result ->
                     if(result.status == "Success")
@@ -102,12 +102,12 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     fun getContestData() = viewModelScope.launch {
         try {
             contestLD.postValue(Resource.Loading())
-            val response = respository.fetchContests()
+            val response = repository.fetchContests()
             if (response.isSuccessful) {
                 response.body()?.let {
-                    if(response.body()!!.status == "success")
-                    respository.NukeContests()
-                    respository.InsertContests(it.resultContest)
+                    if (response.body()!!.status == "success")
+                        repository.NukeContests()
+                    repository.InsertContests(it.resultContest)
                     }
             } else {
                 contestLD.postValue(Resource.Error(null, response.message()))
@@ -119,10 +119,10 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
 
     fun getCodechefFriends(handles :String) = viewModelScope.launch {
         codechefFriendsLD.postValue(Resource.Loading())
-        val response = respository.fetchFriendListCC(handles)
+        val response = repository.fetchFriendListCC(handles)
         if(response.isSuccessful){
             response.body()?.let {
-                respository.InsertFriends(it)
+                repository.InsertFriends(it)
                 codechefFriendsLD.postValue(Resource.Success(it))
             }
         }
@@ -133,10 +133,10 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
 
     fun getCodeforcesFriends(handles : String) = viewModelScope.launch {
         codeforcesUserLD.postValue(Resource.Loading())
-        val response = respository.fetchFriendListCF(handles)
+        val response = repository.fetchFriendListCF(handles)
         if(response.isSuccessful){
             response.body()?.let {
-                respository.InsertFriends(it)
+                repository.InsertFriends(it)
                 codeforcesFriendsLD.postValue(Resource.Success(it))
             }
         }
@@ -146,63 +146,63 @@ class MainActivityViewModel(val respository: CodeRespository) :ViewModel() {
     }
 
     fun getCodechefContests() =
-        respository.getCodechefContests()
+        repository.getCodechefContests()
 
     fun getAtCoderContests() =
-        respository.getAtCoderContests()
+        repository.getAtCoderContests()
 
     fun getCodeforcesContest() =
-        respository.getCodeforcesContests()
+        repository.getCodeforcesContests()
 
     fun getGoogleContests() =
-        respository.getGoogleContests()
+        repository.getGoogleContests()
 
     fun getAllContests() =
-        respository.getAllContests()
+        repository.getAllContests()
 
     fun getTopCoderContests()=
-        respository.getTopcoderContest()
+        repository.getTopcoderContest()
 
     fun getAllCCFriends() =
-        respository.getAllCCFriends()
+        repository.getAllCCFriends()
 
     fun getAllCFFriends() =
-        respository.getAllCFFriends()
+        repository.getAllCFFriends()
 
     fun getAllRunningCCContests()=
-        respository.getAllRunningCCContest()
+        repository.getAllRunningCCContest()
 
     fun getAllRunningACContests()=
-        respository.getAllRunningACContest()
+        repository.getAllRunningACContest()
 
     fun getAllRunningCFContests()=
-        respository.getAllRunningCFContest()
+        repository.getAllRunningCFContest()
 
     fun getAllRunningGContests()=
-        respository.getAllRunningGContest()
+        repository.getAllRunningGContest()
 
     fun getAllRunningTContests()=
-        respository.getAllRunningTContest()
+        repository.getAllRunningTContest()
 
     fun getAllRunningContests()=
-        respository.getAllRunningContest()
+        repository.getAllRunningContest()
 
     fun InsertFriend(leaderboard: ResponseLeaderboard)= viewModelScope.launch {
-        respository.InsertFriends(leaderboard)
+        repository.InsertFriends(leaderboard)
     }
 
 
     fun DeleteFriends(leaderboard: Leaderboard) = viewModelScope.launch {
-        respository.DeleteFriends(leaderboard)
+        repository.DeleteFriends(leaderboard)
     }
 
 
 
     fun afterMathsCodechef() = viewModelScope.launch {
-        respository.deleteAllCC()
+        repository.deleteAllCC()
     }
     fun afterMathsCodeforces() = viewModelScope.launch {
-        respository.deleteAllCF()
+        repository.deleteAllCF()
     }
 
 

@@ -9,7 +9,6 @@ import com.carrot.trucoder2.R
 
 class Functions {
     companion object{
-        const val BASE_URL = "http://code-carrot.herokuapp.com"
         @JvmStatic
         fun hideSoftKeyboard(activity: Activity) {
             val view = activity.currentFocus
