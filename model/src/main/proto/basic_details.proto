@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.carrot.trucoder2.model";
+option java_multiple_files = true;
+
+// structure to hold the basic details of the user. These details can be viewed
+// on the home screen.
+message UserBasicDetails {
+  string handle = 1;
+  string avatar = 2;
+  string level = 3;
+  int32 rating = 4;
+}
+
+// structure to hold the list of friends along with their basic details.
+message UserFriendsBasicDetails {
+  repeated FriendBasicDetails friend_basic_details = 1;
+}
+
+// structure to hold basic details of a person who the user follows.
+message FriendBasicDetails {
+  string handle = 1;
+  string avatar = 2;
+  int32 rating = 3;
+  string level = 4;
+}

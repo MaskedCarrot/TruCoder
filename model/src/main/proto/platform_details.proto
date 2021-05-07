@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.carrot.trucoder2.model";
+option java_multiple_files = true;
+
+// structure to hold the basic details of a user on codeforces.
+message codeforcesBasicDetails {
+  string handle = 1;
+  string avatar = 2;
+  string level = 3;
+  int32 rating = 4;
+}
+
+// structure to hold the details of the contest in which the user has participated.
+message CodeforcesPastContests {
+  int32 contest_id = 1;
+  string contest_name = 2;
+  int32 old_rating = 3;
+  int32 new_rating = 4;
+  int32 rank = 5;
+}
+
+message CodeforcesRecentSubmissions {
+  string participant_type = 1;
+  int64 start_time = 2;
+  
+}

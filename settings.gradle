@@ -1,2 +1,5 @@
+rootProject.name = "TruCoder"
 include ':app'
-rootProject.name = "TruCoder2"
+include ':domain'
+include ':model'
+include ':data'

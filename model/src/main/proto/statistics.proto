@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.carrot.trucoder2.model";
+option java_multiple_files = true;
+
+message CodeforcesStatistics {
+
+}
