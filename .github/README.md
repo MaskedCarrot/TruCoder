@@ -1,5 +1,6 @@
 # TruCoder
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6e5f66118c424dd18082df8cd518d01f)](https://app.codacy.com/gh/MaskedCarrot/TruCoder?utm_source=github.com&utm_medium=referral&utm_content=MaskedCarrot/TruCoder&utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0527203343d34ad89196a119176c4cd8)](https://www.codacy.com/gh/MaskedCarrot/TruCoder/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MaskedCarrot/TruCoder&amp;utm_campaign=Badge_Grade)
+[![Android CI](https://github.com/MaskedCarrot/TruCoder/actions/workflows/android.yml/badge.svg)](https://github.com/MaskedCarrot/TruCoder/actions/workflows/android.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 
@@ -11,14 +12,13 @@
 
 TruCoder keeps you in the know about various upcoming competitive coding contests. TruCoder also keeps track of your performance in competitions held on CodeChef and Codeforces.
 
-- Know about various upcoming contests
-- See the currently ongoing contests
-- Set reminders for future contests
-
-- See your statistics on Codechef and Codeforces
-- Compete with your friends in the leaderboard
-- View your recent participation on CodeChef and Codeforces
-- View your rating changes over time graphically
+-  Know about various upcoming contests
+-  See the currently ongoing contests
+-  Set reminders for future contests
+-  See your statistics on Codechef and Codeforces
+-  Compete with your friends in the leaderboard
+-  View your recent participation on CodeChef and Codeforces
+-  View your rating changes over time graphically
 
 
 
