@@ -20,5 +20,5 @@ TruCoder keeps you in the know about various upcoming competitive coding contest
 -  View your recent participation on CodeChef and Codeforces
 -  View your rating changes over time graphically
 
-
+Backend for the app https://github.com/MaskedCarrot/TruCoder-Backend
 
