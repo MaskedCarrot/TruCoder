@@ -27,14 +27,17 @@ class ContestsDataController @Inject constructor(
         return contestDatabase.contestList.filter { it.contestPlatformValue == platformID }
     }
 
-    /** updates the value of [contestDatabaseLiveData] to loading and then
-     * calls [getContestsFromBackend] to perform network request.*/
+    /**
+     * updates the value of [contestDatabaseLiveData] to loading and then
+     * calls [getContestsFromBackend] to perform network request.
+     */
     fun executeNetworkRequestToGetContests() {
         contestDatabaseLiveData.postValue(Resource.Loading())
         getContestsFromBackend()
     }
 
-    /** Perform network requests to the contests endpoint and
+    /**
+     * Perform network requests to the contests endpoint and
      * returns a protobuf generated from the JSON.
      */
     private fun getContestsFromBackend() {

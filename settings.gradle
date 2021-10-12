@@ -1,5 +1,0 @@
-rootProject.name = "TruCoder"
-include ':app'
-include ':domain'
-include ':model'
-include ':data'
