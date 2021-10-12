@@ -1,7 +1,7 @@
 # TruCoder
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0527203343d34ad89196a119176c4cd8)](https://www.codacy.com/gh/MaskedCarrot/TruCoder/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MaskedCarrot/TruCoder&amp;utm_campaign=Badge_Grade)
 [![Android CI](https://github.com/MaskedCarrot/TruCoder/actions/workflows/android.yml/badge.svg)](https://github.com/MaskedCarrot/TruCoder/actions/workflows/android.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0527203343d34ad89196a119176c4cd8)](https://www.codacy.com/gh/MaskedCarrot/TruCoder/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MaskedCarrot/TruCoder&amp;utm_campaign=Badge_Grade)
 
 
 <a href="https://play.google.com/store/apps/details?id=com.carrot.trucoder2" target="_blank" align="left">
