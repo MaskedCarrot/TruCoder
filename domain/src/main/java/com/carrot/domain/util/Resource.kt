@@ -1,4 +1,4 @@
-package com.carrot.domain.contests
+package com.carrot.domain.util
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T) : Resource<T>(data)

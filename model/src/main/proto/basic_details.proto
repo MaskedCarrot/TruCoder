@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.carrot.trucoder2.model";
+option java_multiple_files = true;
+
+// structure to hold the basic details of the user. These details can be viewed
+// on the home screen.
+message BasicDetails {
+  string handle = 1;
+  string avatar = 2;
+  string level = 3;
+  int32 rating = 4;
+}

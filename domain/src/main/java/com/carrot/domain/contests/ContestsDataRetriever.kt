@@ -4,6 +4,7 @@ import com.carrot.domain.util.Constants.DEFAULT_LONG_VALUE
 import com.carrot.domain.util.Constants.DEFAULT_STRING_VALUE
 import com.carrot.domain.util.Constants.INTERNAL_SERVER_ERROR
 import com.carrot.domain.util.Constants.SUCCESS_RESPONSE
+import com.carrot.domain.util.Resource
 import com.carrot.trucoder2.data.model.BackendContestContainer
 import com.carrot.trucoder2.model.Contest
 import com.carrot.trucoder2.model.ContestDatabase
@@ -11,6 +12,8 @@ import com.carrot.trucoder2.model.ContestPlatform.CONTESTS_PLATFORM_UNSPECIFIED_
 import javax.inject.Inject
 
 class ContestsDataRetriever @Inject constructor() {
+
+    /** Loads the  contest data received from the server. */
     fun loadContestsData(responseBody: BackendContestContainer?): Resource<ContestDatabase> {
         if (responseBody == null) {
             return Resource.UncaughtError(
@@ -24,11 +27,11 @@ class ContestsDataRetriever @Inject constructor() {
                 "Either status or contests list was null."
             )
         }
-        when (responseBody.status) {
+        return when (responseBody.status) {
             SUCCESS_RESPONSE -> {
-                val contestsDatabase = ContestDatabase.newBuilder()
+                val contestsDatabaseBuilder = ContestDatabase.newBuilder()
                 responseBody.contest!!.forEach {
-                    contestsDatabase.addContest(
+                    contestsDatabaseBuilder.addContest(
                         Contest.newBuilder()
                             .setContestPlatformValue(it.id ?: CONTESTS_PLATFORM_UNSPECIFIED_VALUE)
                             .setDuration(it.duration ?: DEFAULT_LONG_VALUE)
@@ -37,16 +40,16 @@ class ContestsDataRetriever @Inject constructor() {
                             .setEvent(it.event ?: DEFAULT_STRING_VALUE)
                     )
                 }
-                return Resource.Success(contestsDatabase.build())
+                Resource.Success(contestsDatabaseBuilder.build())
             }
             INTERNAL_SERVER_ERROR -> {
-                return Resource.InternalServerError(
+                Resource.InternalServerError(
                     ContestDatabase.getDefaultInstance(),
                     "Internal server error."
                 )
             }
             else -> {
-                return Resource.UncaughtError(
+                Resource.UncaughtError(
                     ContestDatabase.getDefaultInstance(),
                     "Uncaught exception occurred in ContestsDataRetriever"
                 )

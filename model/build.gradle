@@ -1,0 +1,37 @@
+apply plugin: 'java-library'
+apply plugin: 'com.google.protobuf'
+
+protobuf {
+  protoc {
+    artifact = 'com.google.protobuf:protoc:3.8.0'
+  }
+  generateProtoTasks {
+    all().each { task ->
+      task.builtins {
+        java {
+          // This setup is per https://github.com/google/protobuf-gradle-plugin/issues/315.
+          option 'lite'
+        }
+      }
+    }
+  }
+}
+
+dependencies {
+  implementation 'com.google.protobuf:protobuf-javalite:3.17.3'
+}
+
+sourceSets {
+  main.java.srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+  main.java.srcDirs += "$projectDir/src/main/proto"
+}
+
+processResources {
+  exclude('**/*.proto')
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
