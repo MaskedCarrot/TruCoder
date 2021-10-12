@@ -1,4 +1,4 @@
-package com.maskedcarrot.trucoder2
+package com.carrot.trucoder2.data
 
 import org.junit.Test
 

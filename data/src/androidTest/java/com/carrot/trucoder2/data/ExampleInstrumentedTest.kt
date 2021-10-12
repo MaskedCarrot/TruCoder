@@ -1,4 +1,4 @@
-package com.maskedcarrot.domain
+package com.carrot.trucoder2.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.maskedcarrot.domain.test", appContext.packageName)
+        assertEquals("com.carrot.trucoder2.data.test", appContext.packageName)
     }
 }

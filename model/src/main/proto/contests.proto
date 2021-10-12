@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.carrot.trucoder2.model";
+option java_multiple_files = true;
+
+// structure to hold the contest response from the backend.
+message ContestDatabase {
+  repeated Contest contest = 2;
+}
+
+// structure to hold the contest details.
+message Contest {
+  ContestPlatform contest_platform = 1;
+  string href = 2;
+  string event = 3;
+  int64 start_time = 4;
+  int64 end_time = 5;
+  int64 duration = 6;
+}
+
+// enum containing the contest platforms
+enum ContestPlatform {
+  CONTESTS_PLATFORM_UNSPECIFIED = 0;
+  CODEFORCES = 1;
+  CODECHEF = 2;
+  GOOGLE = 3;
+  ATCODER = 4;
+}

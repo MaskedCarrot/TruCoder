@@ -1,7 +1,9 @@
 package com.carrot.domain.contests
 
 
+import android.icu.util.Calendar
 import androidx.lifecycle.MutableLiveData
+import com.carrot.domain.util.Resource
 import com.carrot.trucoder2.data.api.ContestsService
 import com.carrot.trucoder2.data.model.BackendContestContainer
 import com.carrot.trucoder2.model.Contest
@@ -9,6 +11,7 @@ import com.carrot.trucoder2.model.ContestDatabase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,22 +22,55 @@ class ContestsDataController @Inject constructor(
     private val contestsService: ContestsService,
     private val contestsDataRetriever: ContestsDataRetriever
 ) {
-
     private val contestDatabaseLiveData = MutableLiveData<Resource<ContestDatabase>>()
 
-    /** returns [ContestDatabase] containing the contests of only a specified id.*/
-    fun filtersContestsById(contestDatabase: ContestDatabase, platformID: Int): List<Contest> {
-        return contestDatabase.contestList.filter { it.contestPlatformValue == platformID }
+    /** Returns [ContestDatabase] containing the contests of only a specified id.*/
+    fun filtersContestsById(
+        contestDatabase: ContestDatabase,
+        platformIdList: List<Int>
+    ): List<Contest> {
+        return contestDatabase.contestList.filter {
+            platformIdList.contains(it.contestPlatformValue)
+        }
     }
 
     /**
-     * updates the value of [contestDatabaseLiveData] to loading and then
-     * calls [getContestsFromBackend] to perform network request.
+     * Returns [ContestDatabase] filtered by the platformId till a specific number of days in
+     * advance. */
+    fun filterUpcomingContestByTime(
+        contestDatabase: ContestDatabase,
+        platformIdList: ArrayList<Int>,
+        daysInFuture: Int
+    ): List<Contest> {
+        val currentTIme = Calendar.getInstance().timeInMillis
+
+        // Filter list by checking the following three conditions:
+        // 1. The platformId should exist in the specified list of platform ids
+        // 2. the difference between the start time of the contest and the current time should be
+        // less than or equal to the specified number of days.
+        // 3. The contest should be yet to start, i.e. the start time of the contest should be less
+        // than the current time.
+        return contestDatabase.contestList.filter {
+            platformIdList.contains(it.contestPlatformValue) &&
+                    (TimeUnit.MILLISECONDS.toDays(it.startTime - currentTIme) <=
+                            daysInFuture.toLong())
+                    && (currentTIme < it.startTime)
+        }
+    }
+
+    /**
+     * Updates the value of [contestDatabaseLiveData] to loading and then calls
+     * [getContestsFromBackend] to perform network request. Result of this function should be
+     * retrieved using the function [getContestLiveData].
      */
     fun executeNetworkRequestToGetContests() {
         contestDatabaseLiveData.postValue(Resource.Loading())
         getContestsFromBackend()
     }
+
+
+    /** returns [contestDatabaseLiveData]. */
+    fun getContestLiveData() = contestDatabaseLiveData
 
     /**
      * Perform network requests to the contests endpoint and
@@ -69,8 +105,4 @@ class ContestsDataController @Inject constructor(
             }
         })
     }
-
-    /** returns [contestDatabaseLiveData]. */
-    fun getContestLiveData() = contestDatabaseLiveData
-
 }
